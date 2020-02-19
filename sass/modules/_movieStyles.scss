@@ -1,0 +1,28 @@
+.hidden-movies {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.7s;
+  max-height: 0;
+ }
+
+ .show-movie { max-height: 800px; }
+
+.movie-title {
+  font-size: 2.5em;
+  text-align: center;
+  margin-top: 100px;
+ }
+
+.movie-details {
+  padding-left: 12px;
+  padding-top: 12px;
+  margin-bottom: 40px;
+}
+
+.movie-details h3 {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.movie-details p { text-align: center; }

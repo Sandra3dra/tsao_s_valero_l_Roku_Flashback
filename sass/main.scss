@@ -1,0 +1,81 @@
+/* quick reset */
+* { margin: 0; border: 0; padding: 0; }
+
+html, body {
+    height: 100%;
+}
+
+a { 
+    text-decoration: none; 
+
+    img { width: 180px; border: thin solid rgba(255, 255, 255, 0.8); }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    background-color: black;
+    background: url(../images/papyrus.png) repeat;
+    color: #333;
+
+    font-size: 16px;
+    font-family: arial, helvetica, sans-serif;
+}
+
+main { flex: 1 0 auto; }
+
+.hidden { display: none; }
+
+header, footer { padding: 20px 10px; background-color: #333; color: white; }
+
+footer { 
+    width: 100%; 
+    flex-shrink: 0; 
+    text-align: center;
+
+    p { font-size: 0.8em; }
+}
+
+// user styles here -> header controls
+@import 'modules/_userStyles';
+
+// global list styles for layout
+
+ul { 
+    margin: 0 auto;
+
+    li { display: inline-block; padding: 0 8px; }
+}
+
+// end list styles
+
+.video-poster-wrapper { text-align: center; margin-top: 60px } 
+
+.back-home {
+    color: white;
+    margin-bottom: 16px;
+    display: block;
+    padding-left: 8px;
+}
+
+video { width: 100% }
+
+.instructions { padding-top: 30px; text-align: center; }
+
+// movie styles here
+@import 'modules/movieStyles';
+
+.up-arrow { text-align: center }
+
+.up-arrow span {
+    font-size: 2em;
+    padding: 8px 15px 8px;
+    border-radius: 50%;
+    font-weight: bolder;
+    background-color: rgba(255,255,255,0.2);
+    cursor: pointer;
+    display: none;
+}
+
+.show-scroller {display: inline-block !important; }
