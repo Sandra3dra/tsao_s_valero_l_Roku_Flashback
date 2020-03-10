@@ -42,3 +42,6 @@ To install: `npm install`
 
 ## Future Plans
 - needs to be updated
+
+## References & Research
+* Fix Vue router [https://blog.csdn.net/LuciferMS/article/details/83792402]
