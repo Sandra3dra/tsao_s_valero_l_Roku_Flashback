@@ -2,7 +2,7 @@
 
 require('functions.php');
 
-if (isset($_GET['user'])) {
+if (isset($_GET['tbl_user'])) {
     $user = getUser($pdo);
 }
 
