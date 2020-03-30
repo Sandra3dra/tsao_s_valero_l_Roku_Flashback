@@ -1,4 +1,4 @@
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 import AccountComp from "./components/AccountComp.js";
 import AdultComp from "./components/AdultComp.js";
 import KidComp from "./components/KidComp.js";
