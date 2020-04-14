@@ -1,34 +1,14 @@
-// Vue.use(VueRouter);
-import AccountComp from "./components/AccountComp.js";
-import AdultComp from "./components/AdultComp.js";
-import KidComp from "./components/KidComp.js";
-import ErrorComp from "./components/ErrorComp.js";
 
+import router from './components/Router.js';
 
 (() => {
 
-    const routes = [
-        { path: '/', redirect: { name: "account" } },
-        { path: '/account', name: 'account', component: AccountComp },
-        { path: '/adult', name: 'adult', component: AdultComp },
-        { path: '/kid', name: 'kid', component: KidComp },
-        { path: '*', name: 'error', component: ErrorComp }
-    ]
-
-    const router = new VueRouter({
-        routes // shorthand for routes: routes
-    })
-
     const vm = new Vue({
+        router,
 
         data: {
           authenticated: false,
           administrator: false,
-    
-          mockAccount: {
-            useremail: "email",
-            password: "password"
-          },
     
           user: [],
     
@@ -36,10 +16,7 @@ import ErrorComp from "./components/ErrorComp.js";
         },
     
         created: function () {
-          // do a localstorage session check and set authenticated to true if the session still exists
-          // if the cached user exists, then just navigate to their user home page
-    
-          // the localstorage session will persist until logout
+            localStorage.getItem('user');
         },
     
         methods: {
@@ -53,9 +30,7 @@ import ErrorComp from "./components/ErrorComp.js";
           },
     
           signout() {
-            // delete local session
-    
-            // push user back to login page
+            localStorage.clear();
             this.$router.push({ path: "/account" });
             this.authenticated = false;
           }
@@ -64,13 +39,4 @@ import ErrorComp from "./components/ErrorComp.js";
         router
       }).$mount('#app');
 
-    router.beforeEach((to, from, next) => {
-        console.log("router guard fire");
-
-        if (vm.authenticated == false) {
-            next("/account");
-        } else {
-            next();
-        }
-    })
 })();
