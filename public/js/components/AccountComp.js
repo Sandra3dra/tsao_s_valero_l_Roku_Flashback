@@ -23,15 +23,6 @@ export default {
         </div>
      `,
 
-    data() {
-        return {
-            
-        }
-    },
-
-    methods: {
-        
-    },
     components: {
         signin: SigninComp,
         signup: SignupComp

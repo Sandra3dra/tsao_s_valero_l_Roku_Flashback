@@ -5,25 +5,25 @@ export default {
             <form @submit.prevent="signup" class="form">
                 <div class="formCol">
                     <label for="firstname">First name</label>
-                    <input v-model="input2.firstname" type="text" id="firstname" required>
+                    <input v-model="input2.firstname" name="fname" type="text" id="firstname" required>
                 </div>
 
                 <div class="formCol">
                     <label for="lastname">Last name</label>
-                    <input v-model="input2.lastname" type="text" id="lastname" required>
+                    <input v-model="input2.lastname" name="lname" type="text" id="lastname" required>
                 </div>
 
                 <div class="formCol">
                     <label for="signupEmail">Email</label>
-                    <input v-model="input2.useremail" type="email" id="signupEmail" required>
+                    <input v-model="input2.useremail" name="email" type="email" id="signupEmail" required>
                 </div>
 
                 <div class="formCol">
                     <label for="signupPassword">Password</label>
-                    <input v-model="input2.password" type="password" id="signupPassword" required>
+                    <input v-model="input2.password" name="password" type="password" id="signupPassword" required>
                 </div>
-
-                <button type="submit">SIGN UP</button>
+                <p>{{ formMsg }}</p>
+                <input type="submit" name="submit" value="SIGN UP">
             </form>
             <p>Already have a Flashback account?</p>
             <router-link to="/account" id="toSignin">Sign in</router-link>
@@ -37,13 +37,9 @@ export default {
                 lastname: "",
                 useremail: "",
                 password: ""
-            }
+            },
+            formMsg: ""
         }
-    },
-
-    created: function() {
-        // this.fetchHero();
-        // this.fetchHero2();
     },
 
     methods: {
@@ -53,12 +49,12 @@ export default {
             if(this.input2.firstname != "" && this.input2.lastname != "" && this.input2.email != "" && this.input2.password != "") {
                 let formData = new FormData();
 
-                formData.append("username", this.input2.firstname);
-                formData.append("password", this.input2.lastname);
-                formData.append("username", this.input2.useremail);
+                formData.append("firstname", this.input2.firstname);
+                formData.append("lastname", this.input2.lastname);
+                formData.append("useremail", this.input2.useremail);
                 formData.append("password", this.input2.password);
 
-                let url = "./includes/index.php?user=true";
+                let url = `./includes/admin/admin_createUser.php`;
 
                 fetch(url, {
                     method: "POST",
@@ -66,40 +62,20 @@ export default {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    // we got a user back but lets set authentication and such
-                    this.$emit("authenticated", true, data[0]);
-                    //reroute to the users comp so we can see all of them
-                    
+                    if(typeof data == "string" || typeof data != "object"){
+                        this.formMsg = data;
+                    } else {
+                        this.$emit("authenticated", true, data);
+                        this.$router.replace({name: "profile"});
+                    }
                 })
-                .catch((error) => console.log(error));
+                .catch(function(error) {
+                    console.log(error)
+                });
             } else {
                 console.log("Please enter reqired information.");
             }
         }
     }
-        // fetchHero() {
-        //     let url = './includes/admin/ajax.php?hero=true';
-
-        //     fetch(url)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         //console.log(data);
-        //         this.herodata1 = data;
-        //     })
-        //     .catch((err) => console.log(err))
-        // },
-
-        // fetchHero2() {
-        //     let url = './includes/admin/ajax.php?hero_alt=true';
-
-        //     fetch(url)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         //console.log(data);
-        //         this.herodata2 = data;
-        //     })
-        //     .catch((err) => console.log(err))
-        // }
 }
 
