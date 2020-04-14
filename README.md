@@ -2,7 +2,7 @@
 
 <!-- <img src="/public/images/logo.svg" width="150"> -->
 
-Ruku Falshback is a Vue.js based website for all ages to explaore classic movies, TV shows, and music from long time ago.
+Roku Flashback is a Vue.js based website for all ages to explore classic movies, TV shows, and music from long time ago.
 
 ## Built with
 * **HTML5**

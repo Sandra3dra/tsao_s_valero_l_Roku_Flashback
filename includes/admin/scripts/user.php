@@ -1,7 +1,5 @@
 <?php
 
-require('connect.php');
-
 function getUser($conn) {
     $liveuser = $_POST["user_name"];
 
@@ -16,4 +14,22 @@ function getUser($conn) {
     }
 
     return $result;
+}
+
+function getAllUsers($email){
+    $pdo = Database::getInstance()->getConnection();
+
+    $get_user_query = 'SELECT * FROM `tbl_user` WHERE email =:email';
+    $users = $pdo->prepare($get_user_query);
+    $result = $users->execute(
+        array(
+            ':email'=>$email
+        )
+    );
+
+    if($result){
+        return $result;
+    }else{
+        return false;
+    }
 }
