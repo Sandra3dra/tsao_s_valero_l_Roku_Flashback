@@ -2,11 +2,9 @@
 
 require_once '../../load.php';
 
-if (isset($_GET['tbl_user'])) {
-    $result = getUser($pdo);
-}
-
 if (isset($_GET['all_user'])) {
+    $email = trim($_GET['email']);
+    $per = trim($_GET['per']);
     $result = getAllUsers($email);
 }
 

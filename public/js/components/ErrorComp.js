@@ -1,4 +1,5 @@
 export default {
+    name: 'error',
     template: `
         <main class="error-wrapper">
             <h1>Oops! Looks like you're lost.</h1>

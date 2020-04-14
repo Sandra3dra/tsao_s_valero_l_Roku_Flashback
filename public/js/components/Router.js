@@ -19,9 +19,10 @@ let router = new VueRouter({
                 } else {
                     next();
                 }
-            }
+            },
+            props: true
         },
-        {   path: '/home', name: 'home', component: HomeComp },
+        {   path: '/home', name: 'home', component: HomeComp, props: true },
         { path: '*', name: 'error', component: ErrorComp }
     ]
 });
