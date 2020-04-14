@@ -33,12 +33,7 @@ To install: `npm install`
 ## Authors
 
 * **Sandra** - *Back-End* - https://github.com/SandraTsao
-* **Luisa** - *Designer* - https://github.com/LuDesigner
-
-## Acknowledgment/References
-* Icon made by [http://www.freepik.com] from www.flaticon.com
-* Photos by [https://www.pexels.com/] from www.pexels.com
-* Photos by [https://pixabay.com/] from pixabay.com
+* **Luisa** - *Designer* - https://github.com/luisavm
 
 ## Future Plans
 - needs to be updated
