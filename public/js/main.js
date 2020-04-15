@@ -9,22 +9,23 @@ import router from './components/Router.js';
         data: {
           authenticated: false,
           administrator: false,
-    
           user: [],
-
-          currentUser: 'herro',
+          currentUser: '',
           permission: '',
           kids: false
-    
         },
     
         created: function () {
-            localStorage.getItem('useremail');
-            if(this.permission === undefined) {
-                console.log("hello kiddo");
-                this.kids = true;
+            
+            if(localStorage.getItem('useremail')) {
+                this.$router.push({ path: "/profile" });
             }
-            // see if still logged in direct to profile
+            if(this.permission == 1) {
+                this.kids = true;
+            } else {
+                this.kids = false;
+            }
+            
         },
     
         methods: {
@@ -32,17 +33,17 @@ import router from './components/Router.js';
                 console.log('authenticated!');
                 this.authenticated = status;
                 this.user = data;
-                if(data.per > 0){
+            },
+
+            gotCurrentUser(fname, per, admin) {
+                console.log(fname + ' is now the user!');
+                this.currentUser = fname;
+                this.permission = per;
+                if(admin > 0){
                     this.administrator = true; 
                 } else {
                     this.administrator = false;
                 }
-            },
-
-            gotCurrentUser(fname, per) {
-                console.log(fname + ' is now the user!');
-                this.currentUser = fname;
-                this.permission = per;
             },
         
             signout() {

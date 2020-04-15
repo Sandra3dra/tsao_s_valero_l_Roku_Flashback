@@ -3,13 +3,8 @@
 function getAll($tbl){
     $pdo = Database::getInstance()->getConnection();
 
-    $get_item_query = 'SELECT * FROM :tbl';
-    $items = $pdo->prepare($get_item_query);
-    $result = $items->execute(
-        array(
-            ':tbl'=>$tbl
-        )
-    );
+    $get_item_query = 'SELECT * FROM ' .$tbl;
+    $items = $pdo->query($get_item_query);
     
     if($items){
         $result = array();
@@ -27,7 +22,7 @@ function getAll($tbl){
 function getAllK($tbl, $per){
     $pdo = Database::getInstance()->getConnection();
 
-    $get_item_query = 'SELECT * FROM '.$tbl. ' WHERE item_permission =:per';
+    $get_item_query = 'SELECT * FROM '.$tbl. ' WHERE permission =:per';
     $items = $pdo->prepare($get_item_query);
     $result = $items->execute(
         array(
@@ -51,7 +46,7 @@ function getAllK($tbl, $per){
 function getOneKo($tbl, $per) {
     $pdo = Database::getInstance()->getConnection();
 
-    $get_item_query = 'SELECT TOP 1 FROM '.$tbl.' WHERE item_permission =:per';
+    $get_item_query = 'SELECT * FROM '.$tbl.' WHERE permission =:per LIMIT 1';
     $items = $pdo->prepare($get_item_query);
     $result = $items->execute(
         array(
@@ -75,13 +70,8 @@ function getOneKo($tbl, $per) {
 function getOneF($tbl) {
     $pdo = Database::getInstance()->getConnection();
 
-    $get_item_query = 'SELECT TOP 1 FROM :tbl';
-    $items = $pdo->prepare($get_item_query);
-    $result = $items->execute(
-        array(
-            ':tbl'=>$tbl
-        )
-    );
+    $get_item_query = 'SELECT * FROM '.$tbl.' LIMIT 1';
+    $items = $pdo->query($get_item_query);
     
     if($items){
         $result = array();
@@ -99,7 +89,7 @@ function getOneF($tbl) {
 function getOne($tbl, $id){
     $pdo = Database::getInstance()->getConnection();
 
-    $get_item_query = 'SELECT TOP 1 FROM '.$tbl. ' WHERE id =:id';
+    $get_item_query = 'SELECT * FROM '.$tbl. ' WHERE id =:id';
     $items = $pdo->prepare($get_item_query);
     $result = $items->execute(
         array(

@@ -27,9 +27,9 @@ export default {
                 </nav>
             </div>
 
-            <banner v-for="(item, index) in oneitem" :video="item.video" :name="item.name"
-            :year="item.year" :genre="item.genre" :rating="item.rating" :mmpa="item.artist/mmpa"
-            :des="item.des" :banner="item.banner"></banner>
+            <banner v-for="(item, index) in items" :video="item.video" :name="item.name"
+            :year="item.year" :genre="item.genre" :rating="item.rating" :mpaa="item.artist_mpaa"
+            :des="item.des" :banner="item.banner" :key="index"></banner>
 
             <div id="tagsNav">
                 <div class="tag">
@@ -54,12 +54,12 @@ export default {
         return {
             kid: false,
             activeComp: MovComp,
-            oneitem: []
+            items: []
         }
     },
 
     created: function() {
-        // console.log(this.$root.kids);
+        console.log(this.$root.permission);
         if(localStorage.getItem("liveuser")) {
             this.liveuser.username = localStorage.getItem("liveuser");
             this.liveuser.avatar = localStorage.getItem("avatar");
@@ -67,11 +67,76 @@ export default {
             localStorage.setItem("liveuser", this.liveuser.username);
             localStorage.setItem("avatar", this.liveuser.avatar);
         }
-        if(this.$root.kids = true) {
+        if(this.$root.permission == 1) {
             this.kid = true;
         }
         if (this.avatar === null || this.avatar === "null") {
             this.avatar = "simon.svg";
+        }
+        if(this.$root.permission == 1) {
+            if(this.activeComp = MovComp){
+                let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_movie&per=1';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else if(this.activeComp = TvComp) {
+                let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_tvshow&per=1';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else {
+                let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_music&per=1';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            }
+        } else {
+            if(this.activeComp = MovComp){
+                let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_movie';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else if(this.activeComp = TvComp) {
+                let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_tvshow';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else {
+                let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_music';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            }
         }
     },
 
@@ -91,74 +156,6 @@ export default {
             console.log('switched to music');
             this.activeComp = MuComp;
         },
-        defaultBan() {
-            if(this.$root.kids = true) {
-                var per = this.$root.user.per;
-                if(this.activeComp = MovComp){
-                    let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_movie&per=' + per;
-                
-                    fetch(url)
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log(data);
-                        this.oneitem = data;
-                    })
-                    .catch((err) => console.log(err))
-                } else if(this.activeComp = TvComp) {
-                    let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_tvshow&per=' + per;
-                
-                    fetch(url)
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log(data);
-                        this.oneitem = data;
-                    })
-                    .catch((err) => console.log(err))
-                } else {
-                    let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_music&per=' + per;
-                
-                    fetch(url)
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log(data);
-                        this.oneitem = data;
-                    })
-                    .catch((err) => console.log(err))
-                }
-            } else {
-                if(this.activeComp = MovComp){
-                    let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_movie';
-                
-                    fetch(url)
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log(data);
-                        this.oneitem = data;
-                    })
-                    .catch((err) => console.log(err))
-                } else if(this.activeComp = TvComp) {
-                    let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_tvshow';
-                
-                    fetch(url)
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log(data);
-                        this.oneitem = data;
-                    })
-                    .catch((err) => console.log(err))
-                } else {
-                    let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_music';
-                
-                    fetch(url)
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log(data);
-                        this.oneitem = data;
-                    })
-                    .catch((err) => console.log(err))
-                }
-            }
-        },
         openMovBan() {
             var id = this.getAttribute("id");
             let url = './includes/admin/index.php?one_item=true&tbl=tbl_movie&id=' + id;
@@ -167,7 +164,7 @@ export default {
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
-                this.oneitem = data;
+                this.items = data;
             })
             .catch((err) => console.log(err))
         },
@@ -179,7 +176,7 @@ export default {
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
-                this.oneitem = data;
+                this.items = data;
             })
             .catch((err) => console.log(err))
         },
@@ -191,7 +188,7 @@ export default {
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
-                this.oneitem = data;
+                this.items = data;
             })
             .catch((err) => console.log(err))
         }
