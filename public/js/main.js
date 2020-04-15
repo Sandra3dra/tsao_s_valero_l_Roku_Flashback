@@ -47,6 +47,7 @@ import router from './components/Router.js';
             },
         
             signout() {
+                console.log('signed out!');
                 localStorage.clear();
                 this.$router.push({ path: "/account" });
                 this.authenticated = false;

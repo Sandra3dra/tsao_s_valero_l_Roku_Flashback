@@ -1,3 +1,4 @@
+
 export default {
     template: `
         <div class="singUpCon">
@@ -6,19 +7,13 @@ export default {
                 <div class="formCol">
                     <label for="firstname">First name</label>
                     <input v-model="input2.firstname" name="fname" type="text" id="firstname" required>
-                </div>
-
-                <div class="formCol">
+                
                     <label for="lastname">Last name</label>
                     <input v-model="input2.lastname" name="lname" type="text" id="lastname" required>
-                </div>
-
-                <div class="formCol">
+                
                     <label for="signupEmail">Email</label>
                     <input v-model="input2.useremail" name="email" type="email" id="signupEmail" required>
-                </div>
-
-                <div class="formCol">
+            
                     <label for="signupPassword">Password</label>
                     <input v-model="input2.password" name="password" type="password" id="signupPassword" required>
                 </div>
@@ -35,8 +30,8 @@ export default {
             input2: {
                 firstname: "",
                 lastname: "",
-                useremail: "",
-                password: ""
+                useremail: ""
+                // password: ""
             },
             formMsg: ""
         }
@@ -44,8 +39,6 @@ export default {
 
     methods: {
         signup() {
-            //console.log(this.$parent.mockAccount.username);
-            // debugger;
             if(this.input2.firstname != "" && this.input2.lastname != "" && this.input2.email != "" && this.input2.password != "") {
                 let formData = new FormData();
 
@@ -62,11 +55,18 @@ export default {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    if(typeof data == "string" || typeof data != "object"){
+                    if(typeof data != "object"){
+                        console.log(data);
                         this.formMsg = data;
+                        this.input2.firstname = '';
+                        this.input2.lastname = '';
+                        this.input2.useremail = '';
+                        this.input2.password = '';
                     } else {
-                        this.$emit("authenticated", true, data);
-                        this.$router.replace({name: "profile"});
+                        this.$emit("goAuth", true, data);
+                        localStorage.setItem("useremail", data.email);
+                        localStorage.setItem("id", data.id);
+                        this.$router.replace({ name: "profile" , params: { username: data.name }});
                     }
                 })
                 .catch(function(error) {

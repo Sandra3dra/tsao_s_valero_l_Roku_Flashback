@@ -3,10 +3,8 @@
 require_once '../../load.php';
 
 if (isset($_POST['email'])) {
-    $fname = trim($_POST['fname']);
-    $lname = trim($_POST['lname']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $result = createUser($fname, $lname, $email, $password);
+    $result = check($email, $password);
     echo $result;
 }
