@@ -15,9 +15,9 @@ export default {
             <section id="homeOption">
                 <div class="decLine"></div>
 
-                <signin></signin>
+                <signin @goAuth="goAuthenticate"></signin>
 
-                <signup></signup>
+                <signup @goAuth="goAuthenticate"></signup>
 
             </section>
         </div>
@@ -26,5 +26,11 @@ export default {
     components: {
         signin: SigninComp,
         signup: SignupComp
+    },
+
+    methods: {
+        goAuthenticate(status, data) {
+            this.$emit("authenticated", true, data);
+        }
     }
 }

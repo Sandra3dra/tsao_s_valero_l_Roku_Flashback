@@ -9,29 +9,53 @@ import router from './components/Router.js';
         data: {
           authenticated: false,
           administrator: false,
-    
-          users: [],
-
-          currentUser: ''
-    
+          user: [],
+          currentUser: '',
+          permission: '',
+          kids: false
         },
     
         created: function () {
-            localStorage.getItem('user');
+            
+            if(localStorage.getItem('useremail')) {
+                this.$router.push({ path: "/profile" });
+            }
+            if(this.permission == 1) {
+                this.kids = true;
+            } else {
+                this.kids = false;
+            }
+            
         },
     
         methods: {
-          setAuthenticated(status, data) {
+            setAuthenticated(status, data) {
+                console.log('authenticated!');
                 this.authenticated = status;
-                this.administrator = parseInt(data.user_admin);  //parse to make it number, not text. 1 is true 0 is false
-                this.users = data;
-          },
-    
-          signout() {
-            localStorage.clear();
-            this.$router.push({ path: "/account" });
-            this.authenticated = false;
-          }
+                this.user = data;
+            },
+
+            gotCurrentUser(fname, per, admin) {
+                console.log(fname + ' is now the user!');
+                this.currentUser = fname;
+                this.permission = per;
+                if(admin > 0){
+                    this.administrator = true; 
+                } else {
+                    this.administrator = false;
+                }
+            },
+        
+            signout() {
+                localStorage.clear();
+                this.$router.push({ path: "/account" });
+                this.authenticated = false;
+                this.administrator = false;
+                this.currentUser = '';
+                this.permission = '';
+                this.kids = false;
+                this.user = [];
+            }
         },
     
         router

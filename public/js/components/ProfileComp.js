@@ -7,14 +7,14 @@ export default {
         <div id="profile">
             <h2>{{ pageTitle }}</h2>
             <div class="usersRow">
-                <users v-for="(user, index) in usersdata" :img="user.img"
-                :fname="user.fname" :key="index">
+                <users @goset="goSetCurrent" v-for="(user, index) in usersdata" :img="user.user_avatar"
+                :fname="user.user_fname" :per="user.user_permission" :admin="user.user_admin" :key="index">
                 </users>
             </div>
             <h3>{{ subTitle }}</h3>
             <div class="usersRow">
-                <users v-for="(user, index) in usersdata2" :img="user.img"
-                :fname="user.fname" :key="index">
+                <users @goset="goSetCurrent" v-for="(user, index) in usersdata2" :img="user.user_avatar"
+                :fname="user.user_fname" :per="user.user_permission" :admin="user.user_admin" :key="index">
                 </users>
             </div>
         </div>
@@ -22,6 +22,8 @@ export default {
 
     data() {
         return {
+            pageTitle: "Who's watching Flashback?",
+            subTitle: "Kids",
             usersdata: [],
             usersdata2: []
         }
@@ -30,23 +32,37 @@ export default {
     created: function() {
         this.fetchUsers();
         this.fetchUsers2();
+        if (this.user_avatar === null || this.user_avatar === "null") {
+            this.user_avatar = "simon.svg";
+        }
+        if(this.$root.currentUser == '' && this.$root.permission == '') {
+            console.log('clean');
+        } else {
+            this.$root.administrator = false;
+            this.$root.currentUser = '';
+            this.$root.permission = '';
+            localStorage.removeItem("liveuser");
+            localStorage.removeItem("avatar");
+        }
     },
 
     methods: {
         fetchUsers() {
-            $useremail = this.user.email;
-            let url = './includes/admin/index.php?all_user=true&per=1&email='.$useremail;
-
+            var useremail = localStorage.getItem("useremail");
+            
+            let url = './includes/admin/index.php?all_user=true&per=2&email=' + useremail;
+            
             fetch(url)
             .then(res => res.json())
             .then(data => {
+                // console.log(data);
                 this.usersdata = data;
             })
             .catch((err) => console.log(err))
         },
         fetchUsers2() {
-            $useremail = this.user.email;
-            let url = './includes/admin/index.php?all_user=true&per=0&email='.$useremail;
+            var useremail = localStorage.getItem("useremail");
+            let url = './includes/admin/index.php?all_user=true&per=1&email=' + useremail;
 
             fetch(url)
             .then(res => res.json())
@@ -55,8 +71,9 @@ export default {
             })
             .catch((err) => console.log(err))
         },
-        setCurrent() {
-            this.$emit("currentUser", this.fname);
+        goSetCurrent(fname, per, admin) {
+            // console.log(fname);
+            this.$emit("liveuser", fname, per, admin);
         }
     },
 

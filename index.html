@@ -16,14 +16,14 @@
 </head>
 
 <body>
-    <main id="app">
+    <main id="app" v-bind:class="{ bgKid: kids}">
         <header id="mainHeader">
             <h1 class="hidden">Roku Flashback</h1>
-            <img src="public/images/light_flashback_logo.svg" alt="roku flashback logo">
+            <img v-bind:class="{ hidden : kids }" src="public/images/light_flashback_logo.svg" alt="roku flashback logo">
+            <img class="hidden" v-bind:class="{ kidLogo : kids }" src="public/images/flashback_logo.svg" alt="roku flashback logo">
         </header>
 
-        <!-- <router-view @authenticated="setAuthenticated" /> -->
-        <router-view @authenticated="setAuthenticated"></router-view>
+        <router-view @authenticated="setAuthenticated" @liveuser="gotCurrentUser"></router-view>
 
         <footer id="mainFooter">
             <div id="footerTop">
@@ -32,9 +32,9 @@
                 </div>
                 <div class="rows">
                     <h4>Links</h4>
-                    <router-link to="/login"><p>TV Shows</p></router-link>
-                    <router-link to="/login"><p>Movies</p></router-link>
-                    <router-link to="/login"><p>Music</p></router-link>
+                    <router-link :to="{ name: 'home' }"><p>TV Shows</p></router-link>
+                    <router-link :to="{ name: 'home' }"><p>Movies</p></router-link>
+                    <router-link :to="{ name: 'home' }"><p>Music</p></router-link>
                 </div>
                 <div class="rows">
                     <h4>Legal</h4>

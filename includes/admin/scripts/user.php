@@ -1,21 +1,24 @@
 <?php
 
-function getAllUsers($email){
+function getAllUsers($email, $per){
     $pdo = Database::getInstance()->getConnection();
 
-    $get_user_query = 'SELECT * FROM `tbl_user` WHERE email =:email';
+    $get_user_query = 'SELECT * FROM tbl_user WHERE user_email =:email AND user_permission =:per';
     $users = $pdo->prepare($get_user_query);
     $result = $users->execute(
         array(
-            ':email'=>$email
+            ':email'=>$email,
+            ':per'=>$per
         )
     );
-
-    if($result){
+    
+    if($users){
         $result = array();
+
         while($row = $users->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;
         }
+        
         return $result;
     }else{
         return false;
