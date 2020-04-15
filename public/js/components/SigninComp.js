@@ -6,9 +6,7 @@ export default {
                 <div class="formCol">
                     <label for="email">Email</label>
                     <input v-model="input1.useremail" name="email" type="text" id="email" required>
-                </div>
-
-                <div class="formCol">
+            
                     <label for="password">Password</label>
                     <input v-model="input1.password" name="password" type="password" id="password" required>
                 </div>
@@ -23,8 +21,8 @@ export default {
     data() {
         return {
             input1: {
-                useremail: "",
-                password: ""
+                useremail: ""
+                // password: ""
             },
             formMsg: ""
         }
