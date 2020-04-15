@@ -12,7 +12,7 @@ export default {
                     <label for="password">Password</label>
                     <input v-model="input1.password" name="password" type="password" id="password" required>
                 </div>
-                <p>{{ formmsg }}</p>
+                <p>{{ formMsg }}</p>
                 <input type="submit" name="submit" value="SIGN IN">
             </form>
             <p>Don't have a Flashback account?</p>
@@ -26,7 +26,7 @@ export default {
                 useremail: "",
                 password: ""
             },
-            formmsg: ""
+            formMsg: ""
         }
     },
 
@@ -47,13 +47,13 @@ export default {
                 .then(res => res.json())
                 .then(data => {
                     if(typeof data != "object"){
+                        console.log(data);
                         this.formMsg = data;
                         this.input1.useremail = '';
                         this.input1.password = '';
                     } else {
-                        $useremail = data;
-                        localStorage.setItem($useremail);
-                        this.$emit("authenticated", true, data[0]);
+                        this.$emit("goAuth", true, data);
+                        localStorage.setItem("useremail", data.email);
                         this.$router.replace({name: "profile"});
                     }
                 })

@@ -10,7 +10,7 @@ function login($email, $password) {
         )
     );
 
-    if($found_user->fetchColumn()>0){
+    if($user->fetchColumn()>0){
         $matchPass = 'SELECT * FROM tbl_user WHERE user_email =:email AND user_pass =:password';
         $matching = $pdo->prepare($matchPass);
         $found_matched = $matching->execute(
@@ -34,7 +34,7 @@ function login($email, $password) {
             $users['isAdmin'] = $row['user_admin'];
             
             return json_encode($users);
-            
+
         } else {
             $msg = 'incorrect password';
             return json_encode($msg);
