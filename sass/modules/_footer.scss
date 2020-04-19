@@ -20,6 +20,10 @@
                     p {
                         margin-bottom: 5px;
                         font-size: 12px;
+                        &:hover {
+                            color: $a-hov;
+                            transition: all ease 0.4s;
+                        }
                     }
                 }
                 .fa {
@@ -40,6 +44,88 @@
             p {
                 font-size: 12px;
                 text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #app {
+        #mainFooter {
+            #footerTop {
+                @include row;
+                padding: 40px 40px 30px 30px;
+                align-items: unset;
+                justify-content: space-between;
+                .rows {
+                    margin-bottom: 0px;
+                    text-align: left;
+                    h4 {
+                        margin-bottom: 20px;
+                        font-size: 19px;
+                    }
+                    img {
+                        width: 153px;
+                        margin-top: 20px;
+                    }
+                    a {
+                        p {
+                            font-size: 15px;
+                        }
+                    }
+                    .fa {
+                        margin-top: 10px;
+                        margin-right: 8px;
+                        font-size: 25px;
+                    }
+                }
+            }
+            #footerBot {
+                padding-top: 40px;
+                padding-bottom: 40px;
+                @include row;
+                justify-content: center;
+                p {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #app {
+        #mainFooter {
+            #footerTop {
+                padding: 50px 50px 20px 60px;
+                .rows {
+                    h4 {
+                        margin-bottom: 20px;
+                        font-size: 25px;
+                    }
+                    img {
+                        width: 190px;
+                        margin-top: 40px;
+                    }
+                    a {
+                        p {
+                            font-size: 20px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .fa {
+                        margin-top: 20px;
+                        margin-right: 10px;
+                        font-size: 30px;
+                    }
+                }
+            }
+            #footerBot {
+                padding-top: 50px;
+                padding-bottom: 50px;
+                p {
+                    font-size: 20px;
+                }
             }
         }
     }

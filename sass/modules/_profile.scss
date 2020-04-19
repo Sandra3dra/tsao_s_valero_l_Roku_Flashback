@@ -38,6 +38,11 @@
                         font-size: 19px;
                     }
                 }
+                &:hover {
+                    width: 120px;
+                    transition: ease all 0.4s;
+                    margin-left: -5px;
+                }
             }
         }
         #dbc {
@@ -115,6 +120,177 @@
                             color: $darkblue;
                             background-color: $a-hov;
                             transition: all ease 0.4s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #app {
+        #profile {
+            align-items: unset;
+            h2 {
+                font-size: 43px;
+                margin-bottom: 60px;
+                line-height: 46px;
+            }
+            h3 {
+                font-size: 27px;
+                margin-bottom: 30px;
+                line-height: 30px;
+            }
+            .usersRow {
+                @include row;
+                width: 60%;
+                @include center;
+                justify-content: space-between;
+                margin-bottom: 70px;
+                .singleUser {
+                    margin-bottom: 0px;
+                    width: 130px;
+                    height: 130px;
+                    a {
+                        justify-content: space-between;
+                        padding: 7px;
+                        height: 80%;
+                        img {
+                            width: 60%;
+                        }
+                        h4 {
+                            font-size: 20px;
+                        }
+                    }
+                    &:hover {
+                        width: 150px;
+                        height: 150px;
+                        margin-top: -10px;
+                    }
+                }
+            }
+            #dbc {
+                .dbcWrapper {
+                    @include row;
+                    justify-content: space-evenly;
+                    margin-top: 60px;
+                    width: 420px;
+                    padding: 20px;
+                    a {
+                        position: absolute;
+                        margin-left: 205px;
+                        font-size: 20px;
+                        margin-right: 0px;
+                        margin-top: -5px;
+                    }
+                    .avDiv {
+                        width: 100px;
+                        border-radius: 10px;
+                        margin-top: 40px;
+                        margin-bottom: 40px;
+                        img {
+                            width: 70%;
+                        }
+                        p {
+                            font-size: 20px;
+                        }
+                    }
+                    .dbcForm {
+                        width: 60%;
+                        margin-top: 40px;
+                        label {
+                            font-size: 15px;
+                            margin-bottom: 20px;
+                        }
+                        input {
+                            border-radius: 10px;
+                            margin-bottom: 30px;
+                            font-size: 15px;
+                        }
+                        input[type=submit] {
+                            width: 40%;
+                            font-size: 12px;
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #app {
+        #profile {
+            h2 {
+                font-size: 55px;
+                margin-bottom: 70px;
+                line-height: 55px;
+            }
+            h3 {
+                font-size: 35px;
+                margin-bottom: 30px;
+                line-height: 40px;
+            }
+            .usersRow {
+                margin-bottom: 80px;
+                .singleUser {
+                    width: 160px;
+                    height: 160px;
+                    a {
+                        padding: 10px;
+                        height: 50%;
+                        img {
+                            width: 60%;
+                        }
+                        h4 {
+                            font-size: 26px;
+                        }
+                    }
+                    &:hover {
+                        width: 170px;
+                        height: 170px;
+                        margin-top: -15px;
+                    }
+                }
+            }
+            #dbc {
+                .dbcWrapper {
+                    margin-top: 100px;
+                    width: 600px;
+                    a {
+                        margin-left: 290px;
+                        font-size: 25px;
+                    }
+                    .avDiv {
+                        width: 130px;
+                        margin-top: 50px;
+                        margin-bottom: 50px;
+                        img {
+                            width: 70%;
+                        }
+                        p {
+                            font-size: 24px;
+                        }
+                    }
+                    .dbcForm {
+                        width: 60%;
+                        margin-top: 50px;
+                        label {
+                            font-size: 20px;
+                            margin-bottom: 20px;
+                        }
+                        input {
+                            width: 90%;
+                            margin-bottom: 30px;
+                            font-size: 25px;
+                            line-height: 25px;
+                        }
+                        input[type=submit] {
+                            width: 40%;
+                            border-radius: 25px;
+                            font-size: 15px;
                         }
                     }
                 }
