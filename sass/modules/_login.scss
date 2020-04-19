@@ -106,3 +106,164 @@
         }
     }
 }
+
+@media screen and (min-width: 768px) {
+    #app {
+        #mainHeader {
+            img{
+                margin-left: 35px;
+            }
+        }
+        .homeWrapper {
+            padding-top: 0px;
+            @include row;
+            .home {
+                width: 45%;
+                img {
+                    margin-top: 50px;
+                    width: 210px;
+                }
+                #welcome {
+                    margin-top: 190px;
+                    margin-left: 30px;
+                    padding: 0px;
+                    h2 {
+                        font-size: 43px;
+                        margin-top: 0px;
+                        margin-bottom: 30px;
+                    }
+                    p {
+                        width: 100%;
+                        font-size: 20px;
+                        line-height: 25px;
+                    }
+                }
+            }
+            #homeOption {
+                width: 55%;
+                padding-top: 100px;
+                padding-bottom: 40px;
+                .decLine {
+                    width: 10%;
+                    border-bottom: $darkblue 7px solid;
+                    border-radius: 20px;
+                    position: absolute;
+                    right: 0;
+                    margin-top: -45px;
+                }
+                .signInCon, .signUpCon {
+                    width: 65%;
+                    padding-bottom: 7%;
+                    h2 {
+                        font-size: 27px;
+                    }
+                    .form {
+                        margin-bottom: 30px;
+                        .formCol {
+                            label {
+                                margin-bottom: 15px;
+                                font-size: 15px;
+                            }
+                            input {
+                                margin-bottom: 30px;
+                                border-radius: 10px;
+                                font-size: 20px;
+                                line-height: 20px;
+                            }
+                        }
+                        input[type=submit] {
+                            border-radius: 20px;
+                            padding: 5px 25px 5px 25px;
+                            font-size: 16px
+                        }
+                    }
+                    p {
+                        font-size: 15px;
+                        margin-bottom: 10px;
+                    }
+                    a {
+                        font-size: 15px;
+                        width: 20%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #app {
+        #mainHeader {
+            img{
+                width: 190px;
+                margin-left: 50px;
+                margin-top: 35px;
+            }
+        }
+        .homeWrapper {
+            .home {
+                img {
+                    margin-top: 70px;
+                    width: 300px;
+                }
+                #welcome {
+                    margin-top: 240px;
+                    margin-left: 52px;
+                    h2 {
+                        font-size: 55px;
+                        margin-bottom: 40px;
+                    }
+                    p {
+                        width: 90%;
+                        font-size: 26px;
+                        line-height: 35px;
+                    }
+                }
+            }
+            #homeOption {
+                padding-top: 120px;
+                padding-bottom: 70px;
+                .decLine {
+                    width: 20%;
+                    border-bottom: $darkblue 8px solid;
+                    margin-top: -65px;
+                }
+                .signInCon, .signUpCon {
+                    width: 50%;
+                    // padding-bottom: 7%;
+                    h2 {
+                        font-size: 35px;
+                    }
+                    .form {
+                        margin-bottom: 40px;
+                        .formCol {
+                            label {
+                                margin-bottom: 17px;
+                                font-size: 20px;
+                            }
+                            input {
+                                margin-bottom: 40px;
+                                // border-radius: 10px;
+                                font-size: 25px;
+                                line-height: 25px;
+                            }
+                        }
+                        input[type=submit] {
+                            border-radius: 22px;
+                            padding: 5px 35px 7px 35px;
+                            font-size: 20px;
+                        }
+                    }
+                    p {
+                        font-size: 20px;
+                        // margin-bottom: 10px;
+                    }
+                    a {
+                        font-size: 20px;
+                        width: 25%;
+                    }
+                }
+            }
+        }
+    }
+}
