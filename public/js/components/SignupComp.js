@@ -1,7 +1,8 @@
 
 export default {
+    name: 'signup',
     template: `
-        <div class="singUpCon">
+        <div class="signUpCon">
             <h2>Create a Flashback account</h2>
             <form @submit.prevent="signup" class="form">
                 <div class="formCol">
@@ -21,7 +22,7 @@ export default {
                 <input type="submit" name="submit" value="SIGN UP">
             </form>
             <p>Already have a Flashback account?</p>
-            <router-link to="/account" id="toSignin">Sign in</router-link>
+            <a v-on:click.prevent="switchBtn" href="#homeOption" id="toSignin">Sign in</a>
         </div>
     `,
 
@@ -38,6 +39,9 @@ export default {
     },
 
     methods: {
+        switchBtn() {
+            this.$parent.switchToSignin()
+        },
         signup() {
             if(this.input2.firstname != "" && this.input2.lastname != "" && this.input2.email != "" && this.input2.password != "") {
                 let formData = new FormData();
@@ -64,8 +68,8 @@ export default {
                         this.input2.password = '';
                     } else {
                         this.$emit("goAuth", true, data);
-                        localStorage.setItem("useremail", data.email);
-                        localStorage.setItem("id", data.id);
+                        var user = JSON.stringify(data);
+                        localStorage.setItem("user", user);
                         this.$router.replace({ name: "profile" , params: { username: data.name }});
                     }
                 })

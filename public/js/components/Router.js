@@ -12,7 +12,7 @@ let router = new VueRouter({
             name: 'profile', 
             component: ProfileComp,
             beforeEnter: (to, from, next) => {
-                if (localStorage.getItem('useremail') == null) {
+                if (localStorage.getItem('user') == null) {
                     console.log("router guard fire");
                     next("/account");
                 } else {

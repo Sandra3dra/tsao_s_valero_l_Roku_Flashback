@@ -28,7 +28,7 @@ function login($email, $password) {
             $users['fname'] = $row['user_fname'];
             $users['lname'] = $row['user_lname'];
             $users['email'] = $row['user_email'];
-            $users['password'] = $row['user_pass'];
+            // $users['password'] = $row['user_pass'];
             $users['avatar'] = $row['user_avatar'];
             $users['per'] = $row['user_permission'];
             $users['isAdmin'] = $row['user_admin'];
