@@ -5,10 +5,10 @@ export default {
             <div class="mov" v-for="(items, index) in allitems" :key="index">
                 <div class="imgWrapper">
                     <div class="imgHov">
-                        <button v-if="authenticatedCheck = true">Play</button>
-                        <button @click="this.$parent.openMovBan()" :id="items.id">SEE MORE INFO</button>
+                        <button @click="play" v-if="authenticatedCheck">Play</button>
+                        <button @click="getBan(items.id); banner();">SEE MORE INFO</button>
                     </div>
-                    <img :src="'public/images/' + items.img" alt="cover image">
+                    <img @click="banner" :src="'public/images/' + items.img" alt="cover image">
                 </div>
                 <div class="content">
                     <h3>{{ items.name }}</h3>
@@ -36,9 +36,8 @@ export default {
 
     methods: {
         fetchAll() {
-            
             if(this.$root.permission == 1) {
-                let url = './includes/admin/index.php?all_k_items=true&per=1&tbl=tbl_movie';
+                let url = './includes/admin/index.php?all_items=true&per=1&tbl=tbl_movie';
             
                 fetch(url)
                 .then(res => res.json())
@@ -48,8 +47,8 @@ export default {
                 })
                 .catch((err) => console.log(err))
             } else {
-                let url = './includes/admin/index.php?all_items=true&tbl=tbl_movie';
-            
+                let url = './includes/admin/index.php?all_items=true&per=2&tbl=tbl_movie';
+        
                 fetch(url)
                 .then(res => res.json())
                 .then(data => {
@@ -58,6 +57,26 @@ export default {
                 })
                 .catch((err) => console.log(err))
             }
+        },
+        getBan(id) {
+            this.$parent.getMovBan(id);
+        },
+        fetchKid() {
+            let url = './includes/admin/index.php?all_items=true&per=1&tbl=tbl_movie';
+            
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                this.allitems = data;
+            })
+            .catch((err) => console.log(err))
+        },
+        banner() {
+            this.$parent.openBan();
+        },
+        play() {
+            this.$parent.playVid();
         }
     }
 }

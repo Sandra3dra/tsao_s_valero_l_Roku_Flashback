@@ -1,25 +1,6 @@
 <?php
 
-function getAll($tbl){
-    $pdo = Database::getInstance()->getConnection();
-
-    $get_item_query = 'SELECT * FROM ' .$tbl;
-    $items = $pdo->query($get_item_query);
-    
-    if($items){
-        $result = array();
-
-        while($row = $items->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = $row;
-        }
-        
-        return $result;
-    }else{
-        return false;
-    }
-}
-
-function getAllK($tbl, $per){
+function getAll($tbl, $per){
     $pdo = Database::getInstance()->getConnection();
 
     $get_item_query = 'SELECT * FROM '.$tbl. ' WHERE permission =:per';

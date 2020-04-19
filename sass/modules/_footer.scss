@@ -1,0 +1,46 @@
+#app {
+    #mainFooter {
+        @include col;
+        #footerTop {
+            @include col;
+            background-color: $footer;
+            padding-top: 30px;
+            align-items: center;
+            .rows {
+                margin-bottom: 30px;
+                text-align: center;
+                h4 {
+                    color: $light;
+                    margin-bottom: 10px;
+                }
+                img {
+                    width: 123px;
+                }
+                a {
+                    p {
+                        margin-bottom: 5px;
+                        font-size: 12px;
+                    }
+                }
+                .fa {
+                    color: $light;
+                    margin-right: 5px;
+                    &:hover {
+                        color: $a-hov;
+                        transition: all ease 0.4s;
+                    }
+                }
+            }
+        }
+        #footerBot {
+            background-color: $foot-bot;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            @include col;
+            p {
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+    }
+}

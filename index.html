@@ -8,6 +8,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"> -->
     <link rel="stylesheet" href="./public/css/reset.css">
     <link rel="stylesheet" href="./public/css/main.css">
+    <link rel="stylesheet" href="https://use.typekit.net/idx0hgc.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://kit.fontawesome.com/cfa5b23a00.js" crossorigin="anonymous"></script>
@@ -17,13 +18,13 @@
 
 <body>
     <main id="app" v-bind:class="{ bgKid: kids}">
-        <header id="mainHeader">
+        <header class="hidden" id="mainHeader">
             <h1 class="hidden">Roku Flashback</h1>
             <img v-bind:class="{ hidden : kids }" src="public/images/light_flashback_logo.svg" alt="roku flashback logo">
             <img class="hidden" v-bind:class="{ kidLogo : kids }" src="public/images/flashback_logo.svg" alt="roku flashback logo">
         </header>
-
-        <router-view @authenticated="setAuthenticated" @liveuser="gotCurrentUser"></router-view>
+ <!-- @liveuser="gotCurrentUser" -->
+        <router-view @authenticated="setAuthenticated"></router-view>
 
         <footer id="mainFooter">
             <div id="footerTop">
@@ -32,9 +33,9 @@
                 </div>
                 <div class="rows">
                     <h4>Links</h4>
-                    <router-link :to="{ name: 'home' }"><p>TV Shows</p></router-link>
-                    <router-link :to="{ name: 'home' }"><p>Movies</p></router-link>
-                    <router-link :to="{ name: 'home' }"><p>Music</p></router-link>
+                    <a href="#"><p>TV Shows</p></a>
+                    <a href="#"><p>Movies</p></a>
+                    <a href="#"><p>Music</p></a>
                 </div>
                 <div class="rows">
                     <h4>Legal</h4>
@@ -51,7 +52,8 @@
                 </div>
             </div>
             <div id="footerBot">
-                <p>&copy; 2020 Flashback, Inc. All rights reserved. Roku, the Roku Logo.</p>
+                <p>&copy; 2020 Flashback, Inc. All rights reserved.</p>
+                <p>Roku, the Roku Logo.</p>
             </div>
         </footer>
     </main>

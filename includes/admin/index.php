@@ -10,13 +10,8 @@ if (isset($_GET['all_user'])) {
 
 if (isset($_GET['all_items'])) {
     $tbl = trim($_GET['tbl']);
-    $result = getAll($tbl);
-}
-
-if (isset($_GET['all_k_items'])) {
-    $tbl = trim($_GET['tbl']);
     $per = trim($_GET['per']);
-    $result = getAllK($tbl, $per);
+    $result = getAll($tbl, $per);
 }
 
 if (isset($_GET['one_ko_item'])) {

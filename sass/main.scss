@@ -1,13 +1,33 @@
 // sass --watch sass:public/css --style compressed
 @import '_vars';
 @import 'modules/_login';
-@import 'modules/_signup';
+@import 'modules/_profile';
 @import 'modules/_home';
 @import 'modules/_adult';
 @import 'modules/_kid';
-@import 'modules/_error';
 @import 'modules/_footer';
 
 .hidden {
     display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+    font-family: $font;
+    font-weight: bold;
+}
+
+p, label, input, textarea, a {
+    font-family: $font;
+}
+
+p {
+    color: $light;
 }

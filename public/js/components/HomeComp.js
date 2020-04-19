@@ -4,20 +4,14 @@ import TvComp from "./TvComp.js";
 import MuComp from "./MuComp.js";
 
 export default {
-    props: {
-        liveuser: {
-            avatar: String,
-            username: String,
-        }
-    },
     name: 'home',
     template: `
         <div class="mainWrapper">
             <div id="mainNav">
                 <nav v-bind:class="{ kidNav : kid }">
                     <ul>
-                        <li><router-link :to="{ name: 'profile' }" v-bind:class="{ hidden : kid }">ADULTS</router-link></li>
-                        <li><router-link :to="{ name: 'profile' }">KIDS</router-link></li>
+                        <button @click="switchAdult" v-bind:class="{ hidden : aOption, adultS : adultS }">ADULTS</button>
+                        <button @click="switchKid" v-bind:class="{ kidS : kidS }">KIDS</button>
                         <div id="userNav">
                             <li><img :src="'public/images/' + liveuser.avatar" alt="avatar"><p>{{ liveuser.username }}</p></li>
                             <li><router-link :to="{ name: 'profile' }">PROFILES PANEL</router-link></li>
@@ -29,24 +23,24 @@ export default {
 
             <banner v-for="(item, index) in items" :video="item.video" :name="item.name"
             :year="item.year" :genre="item.genre" :rating="item.rating" :mpaa="item.artist_mpaa"
-            :des="item.des" :banner="item.banner" :key="index"></banner>
+            :des="item.des" :banner="item.banner" :key="item.name"></banner>
 
             <div id="tagsNav">
-                <div class="tag">
+                <div v-bind:class="{ selected:tvSelected }" class="tag">
                     <img class="hidden" v-bind:class="{ kidIcons : kid }" src="./public/images/p_tv_icon.svg" alt="tv icon">
                     <button @click="goTvshows">TV Shows</button>
                 </div>
-                <div class="tag">
+                <div v-bind:class="{ selected:movSelected }" class="tag">
                     <img class="hidden" v-bind:class="{ kidIcons : kid }" src="./public/images/p_movies_icon.svg" alt="movies icon">
                     <button @click="goMovies">Movies</button>
                 </div>
-                <div class="tag">
+                <div v-bind:class="{ selected:muSelected }" class="tag">
                     <img class="hidden" v-bind:class="{ kidIcons : kid }" src="./public/images/p_music_icon.svg" alt="music icon">
                     <button @click="goMusic">Music</button>
                 </div>
             </div>
 
-            <component :is="activeComp"></component>
+            <component :is="activeComp" ref="media"></component>
         </div>
     `,
 
@@ -54,27 +48,68 @@ export default {
         return {
             kid: false,
             activeComp: MovComp,
-            items: []
+            items: [],
+            liveuser: {
+                avatar: '',
+                username: ''
+            },
+            toKid: false,
+            aOption: false,
+            play: false,
+            moreInfo: false,
+            tvSelected: false,
+            movSelected: true,
+            muSelected: false,
+            kidS: false,
+            adultS: false
         }
     },
 
     created: function() {
         console.log(this.$root.permission);
-        if(localStorage.getItem("liveuser")) {
-            this.liveuser.username = localStorage.getItem("liveuser");
-            this.liveuser.avatar = localStorage.getItem("avatar");
-        } else {
-            localStorage.setItem("liveuser", this.liveuser.username);
-            localStorage.setItem("avatar", this.liveuser.avatar);
-        }
-        if(this.$root.permission == 1) {
-            this.kid = true;
+        if(localStorage.getItem("user")) {
+            var user = localStorage.getItem("user");
+            var userinfo = JSON.parse(user);
+            this.liveuser.avatar = userinfo.avatar;
+            this.liveuser.username = userinfo.fname;
+            if(this.$root.authenticated === false) {
+                this.$root.authenticated = true;
+                if (userinfo.isAdmin == 1) {
+                    this.$root.administrator = true;
+                }
+                this.$root.permission = userinfo.per;
+                if (userinfo.per == 1) {
+                    this.$root.kids = true;
+                }
+                this.$root.user.avatar = userinfo.avatar;
+                this.$root.user.email = userinfo.email;
+                this.$root.user.fname = userinfo.fname;
+                this.$root.user.id = userinfo.id;
+                this.$root.user.isAdmin = userinfo.admin;
+                this.$root.user.per = userinfo.per;
+            }
         }
         if (this.avatar === null || this.avatar === "null") {
             this.avatar = "simon.svg";
         }
+        if(this.activeComp == MovComp) {
+            this.movSelected = true;
+            this.tvSelected = false;
+            this.muSelected = false;
+        } else if(this.activeComp == TvComp) {
+            this.movSelected = false;
+            this.tvSelected = true;
+            this.muSelected = false;
+        } else {
+            this.movSelected = false;
+            this.tvSelected = false;
+            this.muSelected = true;
+        }
         if(this.$root.permission == 1) {
-            if(this.activeComp = MovComp){
+            this.kid = true;
+            this.aOption = true;
+            this.kidS = true;
+            if(this.activeComp == MovComp){
                 let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_movie&per=1';
             
                 fetch(url)
@@ -84,7 +119,7 @@ export default {
                     this.items = data;
                 })
                 .catch((err) => console.log(err))
-            } else if(this.activeComp = TvComp) {
+            } else if(this.activeComp == TvComp) {
                 let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_tvshow&per=1';
             
                 fetch(url)
@@ -106,7 +141,8 @@ export default {
                 .catch((err) => console.log(err))
             }
         } else {
-            if(this.activeComp = MovComp){
+            this.adultS = true;
+            if(this.activeComp == MovComp){
                 let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_movie';
             
                 fetch(url)
@@ -116,7 +152,7 @@ export default {
                     this.items = data;
                 })
                 .catch((err) => console.log(err))
-            } else if(this.activeComp = TvComp) {
+            } else if(this.activeComp == TvComp) {
                 let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_tvshow';
             
                 fetch(url)
@@ -144,20 +180,167 @@ export default {
         byebye() {
             this.$root.signout();
         },
+        switchKid() {
+            // console.log('click');
+            this.toKid = true;
+            this.kid = true;
+            this.kidS = true;
+            this.adultS = false;
+            this.$refs.media.fetchKid();
+            if(this.activeComp == MovComp){
+                let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_movie&per=1';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else if(this.activeComp == TvComp) {
+                let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_tvshow&per=1';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else {
+                let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_music&per=1';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            }
+        },
+        switchAdult() {
+            this.toKid = false;
+            this.kid = false;
+            this.kidS = false;
+            this.adultS = true;
+            this.$refs.media.fetchAll();
+            if(this.activeComp == MovComp){
+                let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_movie';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else if(this.activeComp == TvComp) {
+                let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_tvshow';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            } else {
+                let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_music';
+            
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    this.items = data;
+                })
+                .catch((err) => console.log(err))
+            }
+        },
+        bannerUpdate() {
+            if(this.kid === true) {
+                if(this.activeComp == MovComp){
+                    let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_movie&per=1';
+                
+                    fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        this.items = data;
+                    })
+                    .catch((err) => console.log(err))
+                } else if(this.activeComp == TvComp) {
+                    let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_tvshow&per=1';
+                
+                    fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        this.items = data;
+                    })
+                    .catch((err) => console.log(err))
+                } else {
+                    let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_music&per=1';
+                
+                    fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        this.items = data;
+                    })
+                    .catch((err) => console.log(err))
+                }
+            } else {
+                if(this.activeComp == MovComp){
+                    let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_movie';
+                
+                    fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        this.items = data;
+                    })
+                    .catch((err) => console.log(err))
+                } else if(this.activeComp == TvComp) {
+                    let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_tvshow';
+                
+                    fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        this.items = data;
+                    })
+                    .catch((err) => console.log(err))
+                } else {
+                    let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_music';
+                
+                    fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        this.items = data;
+                    })
+                    .catch((err) => console.log(err))
+                }
+            }
+        },
         goTvshows() {
             console.log('switched to tv shows');
             this.activeComp = TvComp;
+            this.bannerUpdate();
         },
         goMovies() {
             console.log('switched to movies');
             this.activeComp = MovComp;
+            this.bannerUpdate();
         },
         goMusic() {
             console.log('switched to music');
             this.activeComp = MuComp;
+            this.bannerUpdate();
         },
-        openMovBan() {
-            var id = this.getAttribute("id");
+        getMovBan(id) {
+            // var id = id;
             let url = './includes/admin/index.php?one_item=true&tbl=tbl_movie&id=' + id;
         
             fetch(url)
@@ -168,8 +351,8 @@ export default {
             })
             .catch((err) => console.log(err))
         },
-        openTvBan() {
-            var id = this.getAttribute("id");
+        getTvBan(id) {
+            // var id = this.id;
             let url = './includes/admin/index.php?one_item=true&tbl=tbl_tvshow&id=' + id;
         
             fetch(url)
@@ -180,8 +363,8 @@ export default {
             })
             .catch((err) => console.log(err))
         },
-        openMuBan() {
-            var id = this.getAttribute("id");
+        getMuBan(id) {
+            // var id = this.id;
             let url = './includes/admin/index.php?one_item=true&tbl=tbl_music&id=' + id;
         
             fetch(url)
@@ -191,6 +374,18 @@ export default {
                 this.items = data;
             })
             .catch((err) => console.log(err))
+        },
+        playVid() {
+            this.play = true;
+        },
+        closeVid() {
+            this.play = false;
+        },
+        openBan() {
+            this.moreInfo = true;
+        },
+        closeBan() {
+            this.moreInfo = false;
         }
     },
 

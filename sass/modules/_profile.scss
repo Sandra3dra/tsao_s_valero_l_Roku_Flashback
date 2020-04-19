@@ -1,0 +1,124 @@
+#app {
+    #profile {
+        background-color: $darkblue;
+        padding-top: 130px;
+        @include col;
+        align-items: center;
+        h2 {
+            font-size: 34px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: $a-hov;
+            line-height: 36px;
+        }
+        h3 {
+            font-size: 26px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: $a-hov;
+            line-height: 28px;
+        }
+        .usersRow {
+            @include col;
+            margin-bottom: 30px;
+            .singleUser {
+                background-color: $light;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                width: 110px;
+                a {
+                    @include col;
+                    padding: 10px;
+                    img {
+                        width: 70%;
+                        @include center;
+                    }
+                    h4 {
+                        text-align: center;
+                        font-size: 19px;
+                    }
+                }
+            }
+        }
+        #dbc {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            margin-top: -130px;
+            background-color: rgba(32, 54, 151, 0.95);
+            @include col;
+            .dbcWrapper {
+                @include col;
+                background-color: $darkblue;
+                align-self: center;
+                margin-top: 80px;
+                width: 260px;
+                padding: 10px;
+                border-radius: 10px;
+                a {
+                    color: $light;
+                    margin-left: auto;
+                    font-size: 12px;
+                    margin-right: 10px;
+                    margin-top: 10px;
+                }
+                .avDiv {
+                    background-color: $light;
+                    width: 90px;
+                    @include col;
+                    padding: 10px;
+                    @include center;
+                    border-radius: 10px;
+                    margin-top: 40px;
+                    margin-bottom: 20px;
+                    img {
+                        width: 70%;
+                        @include center;
+                    }
+                    p {
+                        font-size: 17px;
+                        color: $darkblue;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+                }
+                .dbcForm {
+                    @include col;
+                    width: 70%;
+                    @include center;
+                    label {
+                        color: $light;
+                        font-size: 12px;
+                        margin-bottom: 10px;
+                    }
+                    input {
+                        border: 2px solid $a-hov;
+                        background-color: transparent;
+                        border-radius: 7px;
+                        margin-bottom: 20px;
+                        &:focus {
+                            background-color: $a-hov;
+                        }
+                        &:valid {
+                            background-color: $a-hov;
+                        }
+                    }
+                    input[type=submit] {
+                        background-color: transparent;
+                        border: $a-hov 2px solid;
+                        color: $light;
+                        width: 50%;
+                        padding: 7px 15px 7px 15px;
+                        border-radius: 20px;
+                        @include center;
+                        &:hover {
+                            color: $darkblue;
+                            background-color: $a-hov;
+                            transition: all ease 0.4s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,7 @@
 export default {
+    name: 'signin',
     template: `
-        <div class="singInCon">
+        <div class="signInCon">
             <h2>Sign In</h2>
             <form @submit.prevent="signin" class="form">
                 <div class="formCol">
@@ -14,7 +15,7 @@ export default {
                 <input type="submit" name="submit" value="SIGN IN">
             </form>
             <p>Don't have a Flashback account?</p>
-            <router-link v-on:click="" to="/account" id="toSignup">Sign up</router-link>
+            <a v-on:click.prevent="switchBtn" href="#homeOption" id="toSignup">Sign up</a>
         </div>
     `,
 
@@ -29,6 +30,9 @@ export default {
     },
 
     methods: {
+        switchBtn() {
+            this.$parent.switchToSignup()
+        },
         signin() {
             if(this.input1.useremail != "" && this.input1.password != "") {
                 let formData = new FormData();
@@ -51,7 +55,8 @@ export default {
                         this.input1.password = '';
                     } else {
                         this.$emit("goAuth", true, data);
-                        localStorage.setItem("useremail", data.email);
+                        var user = JSON.stringify(data);
+                        localStorage.setItem("user", user);
                         this.$router.replace({name: "profile"});
                     }
                 })

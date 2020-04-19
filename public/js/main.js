@@ -10,7 +10,6 @@ import router from './components/Router.js';
           authenticated: false,
           administrator: false,
           user: [],
-          currentUser: '',
           permission: '',
           kids: false
         },
@@ -35,16 +34,16 @@ import router from './components/Router.js';
                 this.user = data;
             },
 
-            gotCurrentUser(fname, per, admin) {
-                console.log(fname + ' is now the user!');
-                this.currentUser = fname;
-                this.permission = per;
-                if(admin > 0){
-                    this.administrator = true; 
-                } else {
-                    this.administrator = false;
-                }
-            },
+            // gotCurrentUser(fname, per, admin) {
+                
+            //     this.currentUser = fname;
+            //     this.permission = per;
+            //     if(admin > 0){
+            //         this.administrator = true; 
+            //     } else {
+            //         this.administrator = false;
+            //     }
+            // },
         
             signout() {
                 console.log('signed out!');
