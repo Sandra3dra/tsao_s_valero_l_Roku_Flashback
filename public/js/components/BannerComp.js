@@ -4,7 +4,7 @@ export default {
     template: `
         <div id="banner" v-bind:class="{ kidBanner:kid }">
             <div v-if="this.$parent.play" class="videoWrapper">
-                <a @click="closeVid"><i class="fa fa-times-circle"></i></a>
+                <a @click="closeVid" class="far fa-times-circle"></a>
                 <video controls autoplay>
                     <source :src="'./public/video/' + video" type="video/mp4">
                         Sorry, your web don't support no web embbeded mp4.
@@ -30,12 +30,18 @@ export default {
                 </div>
             </div>
             <div class="backBan">
-                <h3>{{ name }}</h3>
-                <p>{{ year }} | {{ genre }}</p>
-                <button @click="play" v-if="authenticatedCheck">Play</button>
-                <button @click="openBan">SEE MORE INFO</button>
+                <div class="imgCrop">
+                    <img :src="'./public/images/' + banner" alt="banner image">
+                </div>
+                <div class="overImg">
+                    <h3>{{ name }}</h3>
+                    <p>{{ year }} | {{ genre }}</p>
+                    <div class="banBtn">
+                        <button @click="play" v-if="authenticatedCheck">Play</button>
+                        <button @click="openBan">SEE MORE INFO</button>
+                    </div>
+                </div>
             </div>
-            <img :src="'./public/images/' + banner" alt="banner image">
         </div>
     `,
     data() {

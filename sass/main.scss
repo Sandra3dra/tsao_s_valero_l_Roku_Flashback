@@ -3,7 +3,7 @@
 @import 'modules/_login';
 @import 'modules/_profile';
 @import 'modules/_home';
-@import 'modules/_adult';
+@import 'modules/_banner';
 @import 'modules/_kid';
 @import 'modules/_footer';
 
@@ -30,4 +30,17 @@ p, label, input, textarea, a {
 
 p {
     color: $light;
+}
+
+video {
+    width: 100%;
+}
+
+img {
+    width: 100%;
+}
+
+button {
+    background-color: transparent;
+    border: none;
 }

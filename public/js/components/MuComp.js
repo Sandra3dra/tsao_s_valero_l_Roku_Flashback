@@ -1,18 +1,18 @@
 export default {
     name: 'music',
     template: `
-        <div class="movCon" v-bind:class="{ kidMu : kid }">
-            <div class="mov" v-for="(items, index) in allitems" :key="index">
+        <div class="itemCon" v-bind:class="{ kidMu : kid }">
+            <div class="item" v-for="(items, index) in allitems" :key="index">
                 <div class="imgWrapper">
+                    <img @click="banner" :src="'public/images/' + items.img" alt="cover image">
                     <div class="imgHov">
-                        <button @click="play" v-if="authenticatedCheck">Play</button>
+                        <button @click="getBan(items.id); play();" v-if="authenticatedCheck">Play</button>
                         <button @click="getBan(items.id); banner();">SEE MORE INFO</button>
                     </div>
-                    <img @click="banner" :src="'public/images/' + items.img" alt="cover image">
                 </div>
                 <div class="content">
                     <h3>{{ items.name }}</h3>
-                    <p>{{ items.artist }} {{ items.length }} min</p>
+                    <p>{{ items.artist_mpaa }} {{ items.length }} min</p>
                     <p>{{ items.year }} | {{ items.genre }}</p>
                 </div>
             </div>

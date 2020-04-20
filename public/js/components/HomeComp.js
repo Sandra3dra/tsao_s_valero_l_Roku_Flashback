@@ -8,14 +8,34 @@ export default {
     template: `
         <div class="mainWrapper">
             <div id="mainNav">
+                <div class="mobNav">
+                    <a @click="openMob" class="fa fa-grip-lines"></a>
+                    <ul v-if="mobNav" id="mobMain">
+                        <li class="pImg">
+                            <img :src="'public/images/' + liveuser.avatar" alt="avatar">
+                            <p>{{ liveuser.username }}</p>
+                            <a @click="closeMob" class="fa fa-angle-up"></a>
+                        </li>
+                        <div class="mobSub">
+                            <li><router-link :to="{ name: 'profile' }">PROFILES PANEL</router-link></li>
+                            <li><button @click="byebye">SIGN OUT</button></li>
+                        </div>
+                    </ul>
+                </div>
                 <nav v-bind:class="{ kidNav : kid }">
                     <ul>
                         <button @click="switchAdult" v-bind:class="{ hidden : aOption, adultS : adultS }">ADULTS</button>
                         <button @click="switchKid" v-bind:class="{ kidS : kidS }">KIDS</button>
                         <div id="userNav">
-                            <li><img :src="'public/images/' + liveuser.avatar" alt="avatar"><p>{{ liveuser.username }}</p></li>
-                            <li><router-link :to="{ name: 'profile' }">PROFILES PANEL</router-link></li>
-                            <li><button @click="byebye">SIGN OUT</button></li>
+                            <li class="pImg">
+                                <img :src="'public/images/' + liveuser.avatar" alt="avatar">
+                                <p>{{ liveuser.username }}</p>
+                            </li>
+                            <a @click="hamNav = !hamNav" v-bind:class="{arrowDown:hamNav}" class="hideIcon fa fa-angle-down"></a>
+                            <div v-if="hamNav" class="hideNav">
+                                <li><router-link :to="{ name: 'profile' }">PROFILES PANEL</router-link></li>
+                                <li><button @click="byebye">SIGN OUT</button></li>
+                            </div>
                         </div>
                     </ul>
                 </nav>
@@ -61,7 +81,9 @@ export default {
             movSelected: true,
             muSelected: false,
             kidS: false,
-            adultS: false
+            adultS: false,
+            mobNav: false,
+            hamNav: false
         }
     },
 
@@ -328,16 +350,25 @@ export default {
             console.log('switched to tv shows');
             this.activeComp = TvComp;
             this.bannerUpdate();
+            this.tvSelected = true;
+            this.muSelected = false;
+            this.movSelected = false;
         },
         goMovies() {
             console.log('switched to movies');
             this.activeComp = MovComp;
             this.bannerUpdate();
+            this.tvSelected = false;
+            this.muSelected = false;
+            this.movSelected = true;
         },
         goMusic() {
             console.log('switched to music');
             this.activeComp = MuComp;
             this.bannerUpdate();
+            this.tvSelected = false;
+            this.muSelected = true;
+            this.movSelected = false;
         },
         getMovBan(id) {
             // var id = id;
@@ -386,7 +417,19 @@ export default {
         },
         closeBan() {
             this.moreInfo = false;
-        }
+        },
+        openMob() {
+            this.mobNav = true;
+        },
+        closeMob() {
+            this.mobNav = false;
+        },
+        // openHam() {
+        //     hamNav = true;
+        // },
+        // closeHam() {
+        //     hamNav = false;
+        // }
     },
 
     components: {
