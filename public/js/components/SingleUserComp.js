@@ -41,6 +41,11 @@ export default {
                 } else {
                     this.administrator = false;
                 }
+                if(per == 1) {
+                    this.$root.kids = true;
+                } else {
+                    this.$root.kids = false;
+                }
                 // this.$emit("goset", fname, per, admin);
                 this.$router.replace({name: 'home'});
             }

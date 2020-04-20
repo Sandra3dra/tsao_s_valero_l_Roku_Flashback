@@ -25,7 +25,7 @@ export default {
                     </div>
                     <div class="row">
                         <h4>Summary</h4>
-                        <p>{{ des }}</p>
+                        <p class="sum">{{ des }}</p>
                     </div>
                 </div>
             </div>

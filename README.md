@@ -1,6 +1,6 @@
 # Roku Flashback
 
-<!-- <img src="/public/images/logo.svg" width="150"> -->
+<img src="/public/images/flashback_logo.svg" width="150">
 
 Roku Flashback is a Vue.js based website for all ages to explore classic movies, TV shows, and music from long time ago.
 
@@ -39,4 +39,5 @@ To install: `npm install`
 - needs to be updated
 
 ## References & Research
-* Fix Vue router [https://blog.csdn.net/LuciferMS/article/details/83792402]
+* Style Guide - https://docs.google.com/document/d/1EOeTnEGdQRP1gkZDZ1tSjV_CE7KpRyY7o4tmv-dV1dc/edit?usp=sharing 
+* Dev Notes - https://docs.google.com/document/d/10H_mPTDa59AX53D6CB-_6oqiLlL2BLaS5JpILxakzgo/edit?usp=sharing 

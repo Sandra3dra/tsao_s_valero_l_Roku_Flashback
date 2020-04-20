@@ -15,14 +15,14 @@
 </head>
 
 <body>
-    <main id="app" v-bind:class="{ bgKid: kids}">
+    <main id="app">
         <header id="mainHeader">
             <h1 class="hidden">Roku Flashback</h1>
-            <img v-bind:class="{ hidden : kids }" src="public/images/light_flashback_logo.svg" alt="roku flashback logo">
-            <img v-if="kids" v-bind:class="{ kidLogo : kids }" src="public/images/flashback_logo.svg" alt="roku flashback logo">
+            <img v-bind:class="{ hidden : kidView || kids }" src="public/images/light_flashback_logo.svg" alt="roku flashback logo">
+            <img v-if="kids || kidView" v-bind:class="{ kidLogo : kids }" src="public/images/flashback_logo.svg" alt="roku flashback logo">
         </header>
  <!-- @liveuser="gotCurrentUser" -->
-        <router-view @authenticated="setAuthenticated"></router-view>
+        <router-view ref="comp" @authenticated="setAuthenticated"></router-view>
 
         <footer id="mainFooter">
             <div id="footerTop">

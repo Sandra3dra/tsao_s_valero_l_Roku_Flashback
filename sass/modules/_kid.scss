@@ -1,0 +1,281 @@
+#app {
+    .bgKid {
+        background-color: #fff;
+        #mainNav {
+            background-color: #fff;
+            .mobNav {
+                .fa {
+                    color: $blue;
+                }
+                #mobMain {
+                    background-color: #fff;
+                    box-shadow: 0px 0px 2px 1px $light;
+                    .pImg {
+                        img {
+                            background-color: $rice;
+                        }
+                        p {
+                            color: $blue;
+                        }
+                    }
+                    .mobSub {
+                        li {
+                            a {
+                                color: $blue;
+                                &:hover {
+                                    color: $k-hov;
+                                }
+                            }
+                            button {
+                                color: $blue;
+                                &:hover {
+                                    color: $k-hov;
+                                }
+                            }
+                        }
+                        li:nth-of-type(2) {
+                            border-top: $blue 3px solid;
+                        }
+                    }
+                }
+            }
+            nav {
+                background-color: #fbfbfb;
+                ul {
+                    button {
+                        color: $blue;
+                        &:hover {
+                            color: $k-hov;
+                        }
+                    }
+                    #userNav {
+                        .pImg {
+                            img {
+                                background-color: $rice;
+                            }
+                            p {
+                                color: $blue;
+                            }
+                        }
+                    }
+                    .visNone {
+                        display: none;
+                    }
+                }
+            }
+        }
+        #tagsNav {
+            border-bottom: 1px $blue solid;
+            .tag {
+                @include col;
+                align-items: center;
+                height: 60px;
+                justify-content: space-between;
+                &:nth-child(1) {
+                    .kidIcons {
+                        width: 24px;
+                    }
+                }
+                &:nth-child(2) {
+                    .kidIcons {
+                        width: 25px;
+                        margin-top: 10px;
+                    }
+                }
+                &:nth-child(3) {
+                    .kidIcons {
+                        width: 25px;
+                        margin-top: 5px;
+                    }
+                }
+                .kidIcons {
+                    display: block;
+                    margin-bottom: 10px;
+                }
+                button {
+                    color: $blue;
+                    &:hover {
+                        color: $k-hov;
+                    }
+                }
+            }
+            .selected {
+                border-bottom: 2px $k-hov solid;
+                button {
+                    color: $k-hov;
+                }
+            }
+        }
+        .itemCon {
+            .item {
+                .imgWrapper {
+                    .imgHov {
+                        button {
+                            &:hover {
+                                border: $k-hov 1px solid;
+                                background-color: $k-hov;
+                            }
+                        }
+                    }
+                    &:hover {
+                        .imgHov {
+                            background-color: rgba(33,55,154, 0.9);
+                        }
+                    }
+                }
+                .content {
+                    h3 {
+                        color: $blue;
+                    }
+                    p {
+                        color: $blue;
+                    }
+                    .mpaa {
+                        background-color: $midblue;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .videoWrapper {
+            background-color: rgba(33,55,154, 0.9);
+            a {
+                &:hover {
+                    color: $k-hov;
+                }
+            }
+        }
+        .mainBan {
+            background-color: rgba(33,55,154, 0.9);
+            a {
+                &:hover{
+                    .fa {
+                        color: $k-hov;
+                    }
+                    p {
+                        color: $k-hov;
+                    }
+                }
+            }
+            .banCon {
+                .row {
+                    button {
+                        &:hover {
+                            color: $k-hov;
+                        }
+                    }
+                    .mpaa {
+                        background-color: $darkblue;
+                    }
+                }
+            }
+        }
+        .backBan {
+            .overImg {
+                .banBtn {
+                    button {
+                        &:hover {
+                            border: 2px $k-hov solid;
+                            background-color: $k-hov;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #app {
+        .bgKid {
+            #mainNav {
+                nav {
+                    background-color: #fff;
+                    ul {
+                        button {
+                            color: $blue;
+                            &:hover {
+                                color: $k-hov;
+                            }
+                        }
+                        #userNav {
+                            .pImg {
+                                img {
+                                    background-color: $rice;
+                                }
+                                p {
+                                    color: $blue;
+                                }
+                            }
+                            .hideIcon {
+                                color: $blue;
+                                &:hover {
+                                    color: $k-hov;
+                                }
+                            }
+                            .hideNav {
+                                background-color: #fff;
+                                a {
+                                    color: $blue;
+                                }
+                                button {
+                                    color: $blue;
+                                }
+                            }
+                        }
+                        .visNone {
+                            display: block;
+                            visibility: hidden;
+                        }
+                    }
+                }
+            }
+            #tagsNav {
+                .tag {
+                    @include row;
+                    align-items: unset;
+                    height: 50px;
+                    &:nth-child(1) {
+                        .kidIcons {
+                            width: 30px;
+                        }
+                    }
+                    &:nth-child(2) {
+                        .kidIcons {
+                            width: 35px;
+                            margin-top: 12px;
+                        }
+                    }
+                    &:nth-child(3) {
+                        .kidIcons {
+                            width: 28px;
+                            margin-top: 10px;
+                        }
+                    }
+                    .kidIcons {
+                        margin-bottom: 5px;
+                        margin-right: 5px;
+                    }
+                    button {
+                        font-size: 15px;
+                        margin-top: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #app {
+        .bgKid {
+            #tagsNav {
+                .tag {
+                    button {
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

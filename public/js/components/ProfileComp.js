@@ -51,13 +51,6 @@ export default {
         if (this.user_avatar === null || this.user_avatar === "null") {
             this.user_avatar = "simon.svg";
         }
-        if(this.$root.currentUser == '' && this.$root.permission == '') {
-            console.log('clean');
-        } else {
-            this.$root.administrator = false;
-            this.$root.currentUser = '';
-            this.$root.permission = '';
-        }
     },
 
     methods: {
