@@ -1,0 +1,238 @@
+#app {
+    .mainWrapper {
+        background-color: $blue;
+        #mainNav {
+            background-color: $darkblue;
+            @include col;
+            .mobNav {
+                @include row;
+                margin-left: auto;
+                padding: 30px 10px 30px 0px;
+                .fa {
+                    color: $light;
+                }
+                .fa-grip-lines {
+                    font-size: 30px;
+                }
+                #mobMain {
+                    background-color: $blue;
+                    position: absolute;
+                    width: 160px;
+                    margin-left: -120px;
+                    margin-top: -30px;
+                    padding-top: 30px;
+                    border-radius: 0px 0px 10px 10px;
+                    -webkit-animation: slide-in-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                    animation: slide-in-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                    @-webkit-keyframes slide-in-top {
+                        0% {
+                          -webkit-transform: translateY(-1000px);
+                                  transform: translateY(-1000px);
+                          opacity: 0;
+                        }
+                        100% {
+                          -webkit-transform: translateY(0);
+                                  transform: translateY(0);
+                          opacity: 1;
+                        }
+                      }
+                      @keyframes slide-in-top {
+                        0% {
+                          -webkit-transform: translateY(-1000px);
+                                  transform: translateY(-1000px);
+                          opacity: 0;
+                        }
+                        100% {
+                          -webkit-transform: translateY(0);
+                                  transform: translateY(0);
+                          opacity: 1;
+                        }
+                      }                      
+                    .pImg {
+                        @include row;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        padding-bottom: 20px;
+                        align-items: center;
+                        justify-content: space-between;
+                        img {
+                            background-color: $light;
+                            border-radius: 10px;
+                            padding: 5px;
+                            width: 30%;
+                        }
+                        p {
+                            color: $a-hov;
+                        }
+                        .fa-angle-down {
+                            color: $a-hov;
+                            margin-left: -10px;
+                            font-size: 22px;
+                            margin-top: 5px;
+                        }
+                    }
+                    .mobSub {
+                        // border-top: $light 3px solid;
+                        li {
+                            padding: 10px;
+                            a {
+                               color: $light; 
+                               &:hover {
+                                   color: $a-hov;
+                                   transition: all ease 0.4s;
+                               }
+                            }
+                            button {
+                                color: $light;
+                                font-size: 17px;
+                                padding: 0px;
+                                &:hover {
+                                    color: $a-hov;
+                                    transition: all ease 0.4s;
+                                }
+                            }
+                        }
+                        li:nth-of-type(2) {
+                            border-top: $light 3px solid;
+                        }
+                    }
+                }
+            }
+            nav {
+                background-color: $blue;
+                ul {
+                    @include row;
+                    justify-content: space-between;
+                    padding: 20px 10px 20px 10px;
+                    button {
+                        width: 20%;
+                        font-size: 14px;
+                        color: $light;
+                    }
+                    .adultS {
+                        color: $a-hov;
+                    }
+                    #userNav {
+                        @include col;
+                        width: 50%;
+                        .pImg {
+                            @include row;
+                            width: 80%;
+                            align-items: center;
+                            margin-left: auto;
+                            img {
+                                background-color: $light;
+                                border-radius: 10px;
+                                padding: 5px;
+                                width: 30%;
+                            }
+                            p {
+                                color: $a-hov;
+                                margin-left: 10px;
+                            }
+                        }
+                        .hideIcon {
+                            display: none;
+                        }
+                        .hideNav {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        #tagsNav {
+            @include row;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            width: 85%;
+            @include center;
+            border-bottom: 1px $light solid;
+            .tag {
+                @include row;
+                margin-right: 10px;
+                button {
+                    color: $light;
+                    font-size: 16px;
+                    padding: 0px 0px 5px 0px;
+                    &:hover {
+                        color: $a-hov;
+                        transition: all ease 0.4s;
+                    }
+                }
+            }
+            .selected {
+                border-bottom: 2px $a-hov solid;
+                button {
+                    color: $a-hov;
+                }
+            }
+        }
+        .itemCon {
+            @include col;
+            width: 85%;
+            @include center;
+            .item{
+                margin-bottom: 70px;
+                .imgWrapper {
+                    position: relative;
+                    img {
+                        position: absolute;
+                        // z-index: -1;
+                    }
+                    .imgHov {
+                        position: relative;
+                        width: 100%;
+                        height: 250px;
+                        border-radius: 5px;
+                        z-index: 2;
+                        @include col;
+                        align-items: center;
+                        padding-top: 148px;
+                        button {
+                            display: none;
+                            color: $light;
+                            border: 1px $light solid;
+                            font-size: 14px;
+                            border-radius: 20px;
+                            padding: 5px 15px;
+                            margin-bottom: 20px;
+                            &:hover {
+                                color: $foot-bot;
+                                border: 1px $a-hov solid;
+                                background-color: $a-hov;
+                                transition: all ease 0.4s;
+                            }
+                        }
+                    }
+                    &:hover {
+                        .imgHov {
+                            background-color: rgba(33, 32, 69, 0.90);
+                            transition: ease all 0.4s;
+                            button {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                .content {
+                    @include col;
+                    margin-top: 20px;
+                    h3 {
+                        font-size: 20px;
+                        margin-bottom: 10px;
+                        color: $light;
+                    }
+                    p {
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                    }
+                    .mpaa {
+                        background-color: $darkblue;
+                        padding: 0px 4px;
+                    }
+                }
+            }
+        }
+    }
+}
