@@ -5,7 +5,7 @@
             width: 100%;
             height: 100%;
             top: 0;
-            background-color: rgba(33, 32, 69, 0.95);
+            background-color: rgba(14, 23, 66, 0.9);
             z-index: 99;
             a {
                 font-size: 20px;
@@ -15,11 +15,15 @@
                 right: 0;
                 margin-right: 5px;
                 margin-top: 5px;
+                &:hover {
+                    color: $a-hov;
+                    transition: all ease 0.4s;
+                }
             }
         }
         .mainBan {
             position: fixed;
-            background-color: rgba(33, 32, 69, 0.95);
+            background-color: rgba(14, 23, 66, 0.9);
             width: 80%;
             height: 100%;
             top: 0;
@@ -35,6 +39,15 @@
                 p {
                     margin-left: 10px;
                 }
+                &:hover {
+                    transition: all ease 0.4s;
+                    .fa {
+                        color: $a-hov;
+                    }
+                    p {
+                        color: $a-hov;
+                    }
+                }
             }
             .banCon {
                 @include col;
@@ -43,7 +56,6 @@
                 .row {
                     @include col;
                     margin-top: 40px;
-                    // align-items: center;
                     
                     h3 {
                         color: $light;
@@ -89,10 +101,13 @@
                 bottom: 0;
                 padding-left: 20px;
                 margin-bottom: 30px;
+                width: 290px;
                 h3 {
                     width: 90%;
                     color: $light;
                     font-size: 30px;
+                    overflow-wrap: break-word;
+                    hyphens: auto;
                 }
                 p {
                     font-size: 15px;
@@ -128,6 +143,150 @@
                     width: 220%;
                     z-index: -2;
                     margin-left: -230px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #app {
+        #banner {
+            .videoWrapper {
+                a {
+                    font-size: 24px;
+                }
+            }
+            .mainBan {
+                width: 90%;
+                padding: 5%;
+                a {
+                    p {
+                        font-size: 15px;
+                    }
+                }
+                .banCon {
+                    @include row;
+                    height: 100%;
+                    justify-content: space-between;
+                    .row {
+                        width: 40%;
+                        margin-top: 60px;
+                        h3 {
+                            font-size: 32px;
+                        }
+                        h4 {
+                            font-size: 20px;
+                        }
+                        button {
+                            font-size: 16px;
+                            padding: 8px 15px 10px 15px;
+                            width: 80px;
+                            margin-top: 5px;
+                        }
+                        p {
+                            font-size: 20px;
+                            margin-bottom: 12px;
+                        }
+                        .sum {
+                            font-size: 14px;
+                            line-height: 16px;
+                        }
+                    }
+                }
+            }
+            .backBan {
+                .overImg {
+                    padding-left: 50px;
+                    width: 100%;
+                    h3 {
+                        width: 100%;
+                        font-size: 35px;
+                    }
+                    p {
+                        font-size: 19px;
+                    }
+                    .banBtn {
+                        margin-top: 20px;
+                    }
+                }
+                .imgCrop {
+                    img {
+                        width: 100%;
+                        margin-left: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #app {
+        #banner {
+            .videoWrapper {
+                a {
+                    font-size: 28px;
+                }
+            }
+            .mainBan {
+                a {
+                    p {
+                        font-size: 18px;
+                    }
+                }
+                .banCon {
+                    .row {
+                        width: 35%;
+                        margin-top: 120px;
+                        h3 {
+                            font-size: 38px;
+                        }
+                        h4 {
+                            font-size: 25px;
+                        }
+                        button {
+                            font-size: 18px;
+                            padding: 8px 10px 10px 10px;
+                            margin-top: 10px;
+                        }
+                        p {
+                            font-size: 25px;
+                            margin-bottom: 12px;
+                        }
+                        .sum {
+                            font-size: 17px;
+                            line-height: 19px;
+                        }
+                    }
+                }
+            }
+            .backBan {
+                .overImg {
+                    padding-left: 60px;
+                    margin-bottom: 50px;
+                    h3 {
+                        // width: 100%;
+                        font-size: 40px;
+                    }
+                    p {
+                        font-size: 25px;
+                    }
+                    .banBtn {
+                        margin-top: 30px;
+                        width: 310px;
+                        button {
+                            font-size: 19px;
+                            padding: 10px 25px;
+                            border-radius: 25px;
+                        }
+                    }
+                }
+                .imgCrop {
+                    img {
+                        width: 100%;
+                        margin-left: 0px;
+                    }
                 }
             }
         }

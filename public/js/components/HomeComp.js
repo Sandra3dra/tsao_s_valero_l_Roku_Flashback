@@ -6,7 +6,7 @@ import MuComp from "./MuComp.js";
 export default {
     name: 'home',
     template: `
-        <div class="mainWrapper">
+        <div class="mainWrapper" v-bind:class="{ bgKid: kid}">
             <div id="mainNav">
                 <div class="mobNav">
                     <a @click="openMob" class="fa fa-grip-lines"></a>
@@ -17,14 +17,14 @@ export default {
                             <a @click="closeMob" class="fa fa-angle-up"></a>
                         </li>
                         <div class="mobSub">
-                            <li><router-link :to="{ name: 'profile' }">PROFILES PANEL</router-link></li>
+                            <li @click="cleanUser"><router-link :to="{ name: 'profile' }">PROFILES PANEL</router-link></li>
                             <li><button @click="byebye">SIGN OUT</button></li>
                         </div>
                     </ul>
                 </div>
                 <nav v-bind:class="{ kidNav : kid }">
                     <ul>
-                        <button @click="switchAdult" v-bind:class="{ hidden : aOption, adultS : adultS }">ADULTS</button>
+                        <button @click="switchAdult" v-bind:class="{ visNone : aOption, adultS : adultS }">ADULTS</button>
                         <button @click="switchKid" v-bind:class="{ kidS : kidS }">KIDS</button>
                         <div id="userNav">
                             <li class="pImg">
@@ -33,8 +33,8 @@ export default {
                             </li>
                             <a @click="hamNav = !hamNav" v-bind:class="{arrowDown:hamNav}" class="hideIcon fa fa-angle-down"></a>
                             <div v-if="hamNav" class="hideNav">
-                                <li><router-link :to="{ name: 'profile' }">PROFILES PANEL</router-link></li>
-                                <li><button @click="byebye">SIGN OUT</button></li>
+                                <router-link @click.native="cleanUser" :to="{ name: 'profile' }">PROFILES PANEL</router-link>
+                                <button @click="byebye">SIGN OUT</button>
                             </div>
                         </div>
                     </ul>
@@ -208,6 +208,7 @@ export default {
             this.kid = true;
             this.kidS = true;
             this.adultS = false;
+            this.$root.kidView = true;
             this.$refs.media.fetchKid();
             if(this.activeComp == MovComp){
                 let url = './includes/admin/index.php?one_ko_item=true&tbl=tbl_movie&per=1';
@@ -246,6 +247,7 @@ export default {
             this.kid = false;
             this.kidS = false;
             this.adultS = true;
+            this.$root.kidView = false;
             this.$refs.media.fetchAll();
             if(this.activeComp == MovComp){
                 let url = './includes/admin/index.php?one_f_item=true&tbl=tbl_movie';
@@ -424,12 +426,15 @@ export default {
         closeMob() {
             this.mobNav = false;
         },
-        // openHam() {
-        //     hamNav = true;
-        // },
-        // closeHam() {
-        //     hamNav = false;
-        // }
+        cleanUser() {
+            if(this.$root.administrator === false && this.$root.kids === false) {
+                console.log('clean');
+            } else {
+                console.log("cleaned");
+                this.$root.administrator = false;
+                this.$root.kids = false;
+            }
+        }
     },
 
     components: {

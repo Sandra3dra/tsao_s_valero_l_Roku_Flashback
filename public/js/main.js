@@ -11,7 +11,8 @@ import router from './components/Router.js';
           administrator: false,
           user: [],
           permission: '',
-          kids: false
+          kids: false,
+          kidView: false
         },
     
         created: function () {
@@ -33,17 +34,6 @@ import router from './components/Router.js';
                 this.authenticated = status;
                 this.user = data;
             },
-
-            // gotCurrentUser(fname, per, admin) {
-                
-            //     this.currentUser = fname;
-            //     this.permission = per;
-            //     if(admin > 0){
-            //         this.administrator = true; 
-            //     } else {
-            //         this.administrator = false;
-            //     }
-            // },
         
             signout() {
                 console.log('signed out!');
