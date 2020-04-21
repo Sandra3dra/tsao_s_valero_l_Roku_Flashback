@@ -15,6 +15,9 @@ Roku Flashback is a Vue.js based website for all ages to explore classic movies,
 * MySQL
 * Gulp
 
+## Login Credentials
+* **useremail** SimonIsCute1234@gmail.com
+* **password** 1234
 
 ## Packages to Install (Developers)
 
@@ -35,9 +38,9 @@ To install: `npm install`
 * **Sandra** - *Back-End* - https://github.com/SandraTsao
 * **Luisa** - *Designer* - https://github.com/luisavm
 
-## Future Plans
-- needs to be updated
-
 ## References & Research
 * Style Guide - https://docs.google.com/document/d/1EOeTnEGdQRP1gkZDZ1tSjV_CE7KpRyY7o4tmv-dV1dc/edit?usp=sharing 
 * Dev Notes - https://docs.google.com/document/d/10H_mPTDa59AX53D6CB-_6oqiLlL2BLaS5JpILxakzgo/edit?usp=sharing 
+
+## Future Plans
+- needs to be updated
