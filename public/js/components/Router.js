@@ -21,7 +21,20 @@ let router = new VueRouter({
             },
             props: true
         },
-        {   path: '/home', name: 'home', component: HomeComp, props: true },
+        {   
+            path: '/home', 
+            name: 'home', 
+            component: HomeComp, 
+            beforeEnter: (to, from, next) => {
+                if (localStorage.getItem('user') == null) {
+                    console.log("router guard fire");
+                    next("/account");
+                } else {
+                    next();
+                }
+            },
+            props: true
+        },
         { path: '*', name: 'error', component: ErrorComp }
     ]
 });
