@@ -17,7 +17,7 @@ import router from './components/Router.js';
     
         created: function () {
             
-            if(localStorage.getItem('useremail')) {
+            if(localStorage.getItem('user')) {
                 this.$router.push({ path: "/profile" });
             }
             if(this.permission == 1) {
