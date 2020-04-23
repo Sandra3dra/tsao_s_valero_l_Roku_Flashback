@@ -43,5 +43,5 @@ To install: `npm install`
 * **Luisa** - *Designer* - https://github.com/luisavm
 
 ## References & Research
-* Design Document - https://docs.google.com/document/d/1EOeTnEGdQRP1gkZDZ1tSjV_CE7KpRyY7o4tmv-dV1dc/edit?usp=sharing 
-* Dev Notes - https://docs.google.com/document/d/10H_mPTDa59AX53D6CB-_6oqiLlL2BLaS5JpILxakzgo/edit?usp=sharing 
+* Design Document - https://drive.google.com/open?id=1Wo-XRP8wSBOSntXnKYJFwezlqzhIFrog
+* Dev Notes - https://drive.google.com/open?id=1SPuETNIdUHOquv36TvTQzVMEFThbSvLr
