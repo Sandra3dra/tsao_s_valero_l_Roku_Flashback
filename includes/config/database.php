@@ -1,13 +1,13 @@
 <?php
 class Database
 {
-    private $host = "localhost";
+    private $host = "us-cdbr-east-06.cleardb.net";
 
-    private $db_name = "db_roku_flashback";
+    private $db_name = "heroku_300f1009dd8ccad";
 
-    private $username = "root";
+    private $username = "bddeedd8d251db";
 
-    private $password = "root";
+    private $password = "ccc90f52";
 
     private static $instance = null;
     public $conn;
