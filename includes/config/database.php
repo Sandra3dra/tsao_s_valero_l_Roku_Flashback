@@ -1,21 +1,21 @@
 <?php
 class Database
 {
-    private $host = "us-cdbr-east-06.cleardb.net";
+    // private $host = "us-cdbr-east-06.cleardb.net";
 
-    private $db_name = "heroku_300f1009dd8ccad";
+    // private $db_name = "heroku_300f1009dd8ccad";
 
-    private $username = "bddeedd8d251db";
+    // private $username = "bddeedd8d251db";
 
-    private $password = "ccc90f52";
+    // private $password = "ccc90f52";
 
-    // private $host = "localhost";
+    private $host = "localhost";
 
-    // private $db_name = "db_roku_flashback";
+    private $db_name = "db_roku_flashback";
 
-    // private $username = "root";
+    private $username = "root";
 
-    // private $password = "root";
+    private $password = "root";
 
     private static $instance = null;
     public $conn;
