@@ -9,6 +9,14 @@ class Database
 
     private $password = "ccc90f52";
 
+    // private $host = "localhost";
+
+    // private $db_name = "db_roku_flashback";
+
+    // private $username = "root";
+
+    // private $password = "root";
+
     private static $instance = null;
     public $conn;
 
