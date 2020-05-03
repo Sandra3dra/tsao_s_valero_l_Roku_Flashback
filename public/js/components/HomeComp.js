@@ -32,7 +32,7 @@ export default {
                                 <p>{{ liveuser.username }}</p>
                             </li>
                             <a @click="hamNav = !hamNav" v-bind:class="{arrowDown:hamNav}" class="hideIcon fa fa-angle-down"></a>
-                            <div v-if="hamNav" class="hideNav">
+                            <div v-if="hamNav"amp class="hideNav">
                                 <router-link @click.native="cleanUser" :to="{ name: 'profile' }">PROFILES PANEL</router-link>
                                 <button @click="byebye">SIGN OUT</button>
                             </div>
